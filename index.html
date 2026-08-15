@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>La Terrazza — Riva del Garda</title>
+<meta name="description" content="Appartamento con terrazza privata di 150 m² e vista sul Lago di Garda, a Riva del Garda. Prenota direttamente su WhatsApp.">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" type="image/webp" href="img/favicon.webp">
+<meta property="og:title" content="La Terrazza — Riva del Garda">
+<meta property="og:description" content="Terrazza privata di 150 m² con vista sul Lago di Garda.">
+<meta property="og:image" content="img/p01-s.webp">
+<meta property="og:type" content="website">
+<style>
+:root{
+  --ink:#222222;
+  --ink-2:#5e5e5e;
+  --ink-3:#8a8a8a;
+  --line:#e9e7e4;
+  --bg:#ffffff;
+  --bg-2:#faf8f6;
+  --gold:#b08d4f;
+  --wa:#25d366;
+  --r:16px;
+  --pad:20px;
+  --maxw:720px;
+  --safe-b:env(safe-area-inset-bottom,0px);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  font-size:16px;line-height:1.5;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+/* height:auto serve: senza, gli attributi width/height dell'<img>
+   diventano altezza fissa e annullano gli aspect-ratio */
+img{max-width:100%;display:block;height:auto}
+button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
+a{color:inherit}
+
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad)}
+h1,h2{margin:0;letter-spacing:-.022em;line-height:1.18;font-weight:600}
+h2{font-size:1.32rem;margin-bottom:12px}
+.eyebrow{font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-3);font-weight:600;margin-bottom:7px}
+
+/* ---------- LANG ---------- */
+.langbar{
+  position:fixed;top:0;left:0;right:0;z-index:60;
+  display:flex;justify-content:flex-end;padding:12px var(--pad);pointer-events:none;
+  transition:background .25s ease,box-shadow .25s ease;
+}
+.langbar.solid{background:rgba(255,255,255,.94);backdrop-filter:blur(12px);box-shadow:0 1px 0 var(--line)}
+.langs{
+  display:flex;gap:2px;pointer-events:auto;
+  background:rgba(255,255,255,.9);backdrop-filter:blur(12px);
+  border-radius:999px;padding:3px;box-shadow:0 2px 10px rgba(0,0,0,.16);
+}
+.langs button{padding:6px 12px;border-radius:999px;font-size:.78rem;font-weight:600;color:var(--ink-2);transition:.18s}
+.langs button[aria-pressed="true"]{background:var(--ink);color:#fff}
+
+/* ---------- HERO ---------- */
+.hero{position:relative;height:66svh;min-height:400px;max-height:660px;overflow:hidden;background:#111}
+.hero-bg{width:100%;height:100%;object-fit:cover}
+.hero::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(to bottom,rgba(0,0,0,.4) 0%,rgba(0,0,0,0) 32%,rgba(0,0,0,.05) 52%,rgba(0,0,0,.72) 100%);
+}
+.hero-in{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:0 var(--pad) 26px;color:#fff;max-width:var(--maxw);margin:0 auto}
+.hero-logo{width:66px;height:66px;border-radius:50%;margin-bottom:12px;box-shadow:0 6px 20px rgba(0,0,0,.35)}
+.hero h1{font-size:2.5rem;line-height:1.02;letter-spacing:-.035em;font-weight:700}
+.hero .place{display:flex;align-items:center;gap:7px;margin-top:8px;font-size:.93rem;opacity:.95;font-weight:500}
+.hero .place svg{flex:none;opacity:.9}
+.chip{
+  display:inline-flex;align-items:center;gap:6px;margin-top:14px;
+  background:rgba(255,255,255,.17);backdrop-filter:blur(8px);
+  border:1px solid rgba(255,255,255,.26);
+  padding:6px 13px;border-radius:999px;font-weight:600;font-size:.85rem;
+}
+
+/* ---------- SPECS ---------- */
+.specs{display:flex;padding:18px 0;border-bottom:1px solid var(--line)}
+.spec{flex:1;min-width:0;text-align:center;position:relative}
+.spec+.spec::before{content:"";position:absolute;left:0;top:14%;height:72%;width:1px;background:var(--line)}
+.spec b{display:block;font-size:1.2rem;font-weight:600;letter-spacing:-.02em}
+.spec span{font-size:.72rem;color:var(--ink-3)}
+
+.block{padding:30px 0;border-bottom:1px solid var(--line)}
+.block:last-of-type{border-bottom:0}
+.lead{font-size:1rem;color:var(--ink-2);margin:0}
+
+/* ---------- GALLERY GRID ---------- */
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.grid figure{margin:0;border-radius:12px;overflow:hidden;background:var(--bg-2);position:relative;cursor:pointer}
+.grid figure:first-child{grid-column:1/-1;border-radius:var(--r)}
+.grid figure:first-child img{aspect-ratio:4/3}
+.grid img{width:100%;aspect-ratio:1/1;object-fit:cover}
+.grid figcaption{
+  position:absolute;left:8px;bottom:8px;
+  background:rgba(0,0,0,.55);backdrop-filter:blur(6px);color:#fff;
+  font-size:.7rem;font-weight:600;padding:4px 9px;border-radius:999px;
+}
+.grid figure:first-child figcaption{left:12px;bottom:12px;font-size:.75rem;padding:5px 11px}
+.morebtn{
+  display:flex;align-items:center;justify-content:center;gap:9px;width:100%;
+  margin-top:12px;padding:14px;border:1px solid var(--ink);border-radius:12px;
+  font-weight:600;font-size:.94rem;background:#fff;transition:.18s;
+}
+.morebtn:active{background:var(--bg-2);transform:scale(.99)}
+
+/* ---------- HIGHLIGHTS ---------- */
+.hl{display:flex;gap:13px;padding:13px 0}
+.hl+.hl{border-top:1px solid var(--line)}
+.hl-ic{flex:none;width:38px;height:38px;border-radius:11px;background:var(--bg-2);display:grid;place-items:center}
+.hl b{display:block;font-weight:600;font-size:.96rem;letter-spacing:-.01em}
+.hl p{margin:1px 0 0;font-size:.87rem;color:var(--ink-2);line-height:1.42}
+
+/* ---------- SERVIZI (pills) ---------- */
+.pills{display:flex;flex-wrap:wrap;gap:7px}
+.pills span{
+  display:inline-flex;align-items:center;gap:6px;
+  border:1px solid var(--line);border-radius:999px;
+  padding:7px 13px;font-size:.83rem;color:var(--ink-2);background:#fff;
+}
+.pills svg{flex:none;color:var(--gold)}
+
+/* ---------- RECENSIONI ---------- */
+.rate{display:flex;align-items:center;gap:13px;margin-bottom:16px}
+.rate .big{font-size:2.7rem;font-weight:700;letter-spacing:-.045em;line-height:1}
+.rate .stars{display:flex;gap:2px;color:var(--gold)}
+.rate small{display:block;color:var(--ink-2);font-size:.85rem;margin-top:3px}
+.stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-bottom:20px}
+.stats div{background:#fff;padding:11px 6px;text-align:center}
+.stats b{display:block;font-size:1.02rem;font-weight:600;letter-spacing:-.02em}
+.stats span{font-size:.68rem;color:var(--ink-3)}
+.revs{display:flex;gap:11px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;margin:0 calc(-1*var(--pad));padding:0 var(--pad) 4px}
+.revs::-webkit-scrollbar{display:none}
+.rev{flex:none;width:78%;max-width:320px;scroll-snap-align:center;border:1px solid var(--line);border-radius:var(--r);padding:16px;background:#fff}
+.rev .who{display:flex;align-items:center;gap:9px;margin-bottom:8px}
+.rev .av{width:33px;height:33px;border-radius:50%;flex:none;display:grid;place-items:center;background:var(--ink);color:#fff;font-weight:600;font-size:.82rem}
+.rev .who b{display:block;font-size:.88rem;font-weight:600}
+.rev .who small{color:var(--ink-3);font-size:.73rem}
+.rev .s{color:var(--gold);font-size:.68rem;letter-spacing:1px;margin-bottom:5px}
+.rev p{margin:0;font-size:.86rem;color:var(--ink-2);line-height:1.5}
+.rev .tr{display:block;margin-top:8px;font-size:.69rem;color:var(--ink-3);font-style:italic}
+.revhint{font-size:.78rem;color:var(--ink-3);margin:10px 0 0}
+
+/* ---------- DINTORNI ---------- */
+.near{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;margin:0 calc(-1*var(--pad));padding:0 var(--pad) 4px}
+.near::-webkit-scrollbar{display:none}
+.near figure{flex:none;width:150px;margin:0;border-radius:13px;overflow:hidden;position:relative;scroll-snap-align:start;background:var(--bg-2)}
+.near img{width:150px;aspect-ratio:1/1;object-fit:cover}
+.near figcaption{
+  position:absolute;inset:auto 0 0 0;padding:20px 9px 8px;color:#fff;
+  background:linear-gradient(to top,rgba(0,0,0,.8),transparent);
+  font-size:.74rem;font-weight:600;line-height:1.25;
+}
+.near figcaption small{display:block;font-weight:400;opacity:.82;font-size:.66rem;margin-top:1px}
+
+/* ---------- CTA ---------- */
+.cta-block{text-align:center;padding:38px 0 28px}
+.cta-block h2{font-size:1.5rem;margin-bottom:8px}
+.cta-block p{color:var(--ink-2);margin:0 auto 20px;max-width:400px;font-size:.94rem}
+.wa-btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  background:var(--wa);color:#fff;font-weight:600;font-size:1.02rem;
+  padding:16px 28px;border-radius:999px;text-decoration:none;width:100%;max-width:340px;
+  box-shadow:0 6px 20px rgba(37,211,102,.34);transition:transform .15s ease;
+}
+.wa-btn:active{transform:scale(.975)}
+.wa-alt{display:block;margin-top:14px;font-size:.85rem;color:var(--ink-3);text-decoration:none}
+.wa-alt b{color:var(--ink);text-decoration:underline;text-underline-offset:3px;font-weight:600}
+
+.sticky{
+  position:fixed;left:0;right:0;bottom:0;z-index:55;
+  padding:10px var(--pad) calc(10px + var(--safe-b));
+  background:rgba(255,255,255,.93);backdrop-filter:blur(14px);border-top:1px solid var(--line);
+  transform:translateY(130%);transition:transform .32s cubic-bezier(.32,.72,0,1);
+}
+.sticky.on{transform:translateY(0)}
+.sticky-in{max-width:var(--maxw);margin:0 auto;display:flex;align-items:center;gap:12px}
+.sticky-txt{flex:1;min-width:0;line-height:1.2}
+.sticky-txt b{display:block;font-size:.87rem;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sticky-txt small{color:var(--ink-3);font-size:.73rem}
+.sticky .wa-btn{width:auto;padding:13px 22px;font-size:.92rem;flex:none;box-shadow:none}
+
+footer{text-align:center;padding:24px var(--pad) calc(94px + var(--safe-b));color:var(--ink-3);font-size:.75rem}
+footer img{width:42px;height:42px;border-radius:50%;margin:0 auto 9px;opacity:.85}
+
+/* ---------- LIGHTBOX ---------- */
+.lb{position:fixed;inset:0;z-index:100;background:#000;display:none;flex-direction:column}
+.lb.on{display:flex}
+.lb-top{display:flex;align-items:center;justify-content:space-between;padding:calc(10px + env(safe-area-inset-top,0px)) 16px 10px;color:#fff;flex:none}
+.lb-top span{font-size:.85rem;font-variant-numeric:tabular-nums;opacity:.85}
+.lb-close{width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.14);display:grid;place-items:center;color:#fff}
+.lb-track{flex:1;display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.lb-track::-webkit-scrollbar{display:none}
+.lb-track figure{flex:none;width:100%;margin:0;scroll-snap-align:center;display:grid;place-items:center;padding:0 8px}
+.lb-track img{max-width:100%;max-height:100%;object-fit:contain;border-radius:6px}
+.lb-cap{flex:none;text-align:center;color:#fff;opacity:.75;font-size:.8rem;padding:12px 20px calc(18px + var(--safe-b));min-height:20px}
+
+.rv{opacity:0;transform:translateY(16px);transition:opacity .55s ease,transform .55s cubic-bezier(.22,1,.36,1)}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}*{scroll-behavior:auto!important}}
+
+@media (min-width:760px){
+  body{font-size:17px}
+  .hero h1{font-size:3.3rem}
+  .hero-logo{width:80px;height:80px}
+  h2{font-size:1.55rem}
+  .block{padding:42px 0}
+  .grid{grid-template-columns:1fr 1fr 1fr 1fr}
+  .grid figure:first-child{grid-column:span 2;grid-row:span 2}
+  .rev{width:44%}
+  .stats{grid-template-columns:repeat(6,1fr)}
+}
+</style>
+</head>
+<body>
+
+<div class="langbar" id="langbar">
+  <div class="langs" role="group" aria-label="Lingua / Language / Sprache">
+    <button data-lang="it" aria-pressed="true">IT</button>
+    <button data-lang="en" aria-pressed="false">EN</button>
+    <button data-lang="de" aria-pressed="false">DE</button>
+  </div>
+</div>
+
+<header class="hero">
+  <img class="hero-bg" src="img/p01.webp" alt="Terrazza privata con vista sulle montagne e sulla valle di Riva del Garda" fetchpriority="high" width="1700" height="1275">
+  <div class="hero-in">
+    <img class="hero-logo" src="img/logo.webp" alt="La Terrazza" width="80" height="80">
+    <h1>La Terrazza</h1>
+    <div class="place">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+      <span data-i="place">Riva del Garda · Lago di Garda</span>
+    </div>
+    <span class="chip">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.9-6.2-3.3-6.2 3.3L7 14.2l-5-4.9 6.9-1L12 2Z"/></svg>
+      4,79 · <span data-i="revcount">116 recensioni</span>
+    </span>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <div class="specs">
+    <div class="spec"><b>4</b><span data-i="s1">ospiti</span></div>
+    <div class="spec"><b>2</b><span data-i="s2">camere</span></div>
+    <div class="spec"><b>1</b><span data-i="s4">bagno</span></div>
+    <div class="spec"><b>150</b><span data-i="s5">m² terrazza</span></div>
+  </div>
+
+  <!-- FOTO -->
+  <section class="block rv">
+    <div class="grid" id="grid"></div>
+    <button class="morebtn" id="moreBtn">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+      <span id="moreTxt">Vedi tutte le foto</span>
+    </button>
+  </section>
+
+  <!-- DESCRIZIONE -->
+  <section class="block rv">
+    <h2 data-i="h1">Una terrazza privata di 150 m² sul lago</h2>
+    <p class="lead" data-i="d1">Trilocale luminoso a 2 km dal centro e dalle spiagge di Riva del Garda. Il protagonista è la terrazza: oltre 150 m² tutti tuoi, con pergola bioclimatica, lettini, divani, zona pranzo e barbecue. Davanti, il Lago di Garda, il Monte Brione e tutta la valle.</p>
+  </section>
+
+  <!-- HIGHLIGHTS -->
+  <section class="block rv">
+    <div class="hl">
+      <div class="hl-ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9h20M4 9V5a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v4M6 9v11M18 9v11M2 20h20"/></svg></div>
+      <div><b data-i="f1t">Terrazza privata 150 m²</b><p data-i="f1d">Pergola, lettini, divani e barbecue. Non condivisa con nessuno.</p></div>
+    </div>
+    <div class="hl">
+      <div class="hl-ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m3 18 5.5-7 4 5 3-4L21 18H3Z"/><circle cx="17" cy="6.5" r="2.2"/></svg></div>
+      <div><b data-i="f2t">Vista lago e montagne</b><p data-i="f2d">Lago di Garda, Monte Brione e la valle di Riva.</p></div>
+    </div>
+    <div class="hl">
+      <div class="hl-ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2 16c1.5 0 1.5 1.4 3 1.4s1.5-1.4 3-1.4 1.5 1.4 3 1.4 1.5-1.4 3-1.4 1.5 1.4 3 1.4 1.5-1.4 3-1.4M2 20c1.5 0 1.5 1.4 3 1.4s1.5-1.4 3-1.4 1.5 1.4 3 1.4 1.5-1.4 3-1.4 1.5 1.4 3 1.4 1.5-1.4 3-1.4M7 13V5a2 2 0 1 1 4 0M13 13V5a2 2 0 1 1 4 0"/></svg></div>
+      <div><b data-i="f3t">Piscina e campo da tennis</b><p data-i="f3d">Piscina olimpionica e per bambini in estate, tennis 24 ore su 24.</p></div>
+    </div>
+    <div class="hl">
+      <div class="hl-ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17h14M6.5 17V9.5l1.8-3.6A2 2 0 0 1 10.1 5h3.8a2 2 0 0 1 1.8 1.1L17.5 9.5V17M4 9.5h16"/><circle cx="8" cy="17.5" r="1.6"/><circle cx="16" cy="17.5" r="1.6"/></svg></div>
+      <div><b data-i="f4t">Posto auto in garage</b><p data-i="f4d">Coperto e riservato, incluso. Seconda auto fuori, gratis.</p></div>
+    </div>
+  </section>
+
+  <!-- SERVIZI -->
+  <section class="block rv">
+    <h2 data-i="h4">Cosa troverai</h2>
+    <div class="pills" id="pills"></div>
+  </section>
+
+  <!-- RECENSIONI -->
+  <section class="block rv">
+    <div class="rate">
+      <div class="big">4,79</div>
+      <div>
+        <div class="stars" aria-hidden="true">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.9-6.2-3.3-6.2 3.3L7 14.2l-5-4.9 6.9-1L12 2Z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.9-6.2-3.3-6.2 3.3L7 14.2l-5-4.9 6.9-1L12 2Z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.9-6.2-3.3-6.2 3.3L7 14.2l-5-4.9 6.9-1L12 2Z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.9-6.2-3.3-6.2 3.3L7 14.2l-5-4.9 6.9-1L12 2Z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.9-6.2-3.3-6.2 3.3L7 14.2l-5-4.9 6.9-1L12 2Z"/></svg>
+        </div>
+        <small data-i="revcount2">116 recensioni</small>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div><b>4,9</b><span data-i="c1">Pulizia</span></div>
+      <div><b>5,0</b><span data-i="c2">Comunicazione</span></div>
+      <div><b>4,9</b><span data-i="c3">Check-in</span></div>
+      <div><b>4,8</b><span data-i="c4">Precisione</span></div>
+      <div><b>4,8</b><span data-i="c5">Posizione</span></div>
+      <div><b>4,8</b><span data-i="c6">Qualità/prezzo</span></div>
+    </div>
+
+    <div class="revs" id="revs"></div>
+    <p class="revhint" data-i="revhint">Scorri di lato per leggerne altre</p>
+  </section>
+
+  <!-- DINTORNI -->
+  <section class="block rv">
+    <div class="eyebrow" data-i="ey4">Dintorni</div>
+    <h2 data-i="h5">Cosa c'è intorno</h2>
+    <div class="near" id="near"></div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-block rv" id="contatto">
+    <h2 data-i="ctat">Prenota direttamente</h2>
+    <p data-i="ctad">Scrivici su WhatsApp per disponibilità e prezzo. Senza intermediari e senza commissioni.</p>
+    <a class="wa-btn" id="waMain" href="#" target="_blank" rel="noopener">
+      <svg width="21" height="21" viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.7.2l-.9 1.1c-.2.2-.3.2-.6.1-1.6-.8-2.7-1.4-3.8-3.2-.3-.5.3-.5.8-1.5.1-.2 0-.4 0-.5l-1-2.3c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-1 1-1.2 2.3-.8 3.6.7 2.1 2 3.7 3.5 4.9 2.7 2.2 4.8 2.2 5.9 1.9.7-.2 1.6-.9 1.9-1.6.2-.5.2-1 .1-1.1 0-.1-.2-.2-.3-.3ZM12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3.1.8.8-3-.2-.3a8.2 8.2 0 1 1 7.2 3.9Z"/></svg>
+      <span data-i="wa">Scrivici su WhatsApp</span>
+    </a>
+    <a class="wa-alt" id="telAlt" href="#"><span data-i="orcall">Preferisci chiamare?</span> <b id="telNum">—</b></a>
+  </section>
+
+</main>
+
+<footer>
+  <img src="img/logo.webp" alt="" width="42" height="42" loading="lazy">
+  <div>La Terrazza · Riva del Garda · Trentino-Alto Adige</div>
+</footer>
+
+<div class="sticky" id="sticky">
+  <div class="sticky-in">
+    <div class="sticky-txt">
+      <b data-i="stb">Terrazza privata 150 m²</b>
+      <small>★ 4,79 · <span data-i="revcount3">116 recensioni</span></small>
+    </div>
+    <a class="wa-btn" id="waSticky" href="#" target="_blank" rel="noopener">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.7.2l-.9 1.1c-.2.2-.3.2-.6.1-1.6-.8-2.7-1.4-3.8-3.2-.3-.5.3-.5.8-1.5.1-.2 0-.4 0-.5l-1-2.3c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-1 1-1.2 2.3-.8 3.6.7 2.1 2 3.7 3.5 4.9 2.7 2.2 4.8 2.2 5.9 1.9.7-.2 1.6-.9 1.9-1.6.2-.5.2-1 .1-1.1 0-.1-.2-.2-.3-.3ZM12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3.1.8.8-3-.2-.3a8.2 8.2 0 1 1 7.2 3.9Z"/></svg>
+      <span data-i="wash">Prenota</span>
+    </a>
+  </div>
+</div>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true">
+  <div class="lb-top">
+    <span id="lbCount">1 / 1</span>
+    <button class="lb-close" id="lbClose" aria-label="Chiudi">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <div class="lb-track" id="lbTrack"></div>
+  <div class="lb-cap" id="lbCap"></div>
+</div>
+
+<script>
+/* =======================================================================
+   ⚙️  CONFIGURAZIONE
+   ======================================================================= */
+const WHATSAPP = "393382084621";     // numero internazionale, senza + e senza spazi
+const TEL_SHOW = "+39 338 208 4621"; // come appare a schermo
+/* ===================================================================== */
+
+/* Le prime 5 compaiono nell'anteprima, tutte nella galleria a schermo intero */
+const PHOTOS = [
+  {f:"p01", k:"g_terrazza"},
+  {f:"p08", k:"g_lago"},
+  {f:"p25", k:"g_lettini"},
+  {f:"p07", k:"g_lounge"},
+  {f:"p16", k:"g_camera1"},
+  {f:"p03", k:"g_vista_monti"},
+  {f:"p04", k:"g_pranzo"},
+  {f:"p05", k:"g_bbq"},
+  {f:"p24", k:"g_fiori"},
+  {f:"p26", k:"g_pergola"},
+  {f:"p29", k:"g_balcone"},
+  {f:"p06", k:"g_dall_alto"},
+  {f:"p10", k:"g_soggiorno"},
+  {f:"p11", k:"g_pranzo_int"},
+  {f:"p13", k:"g_cucina"},
+  {f:"p14", k:"g_cucina2"},
+  {f:"p15", k:"g_caffe"},
+  {f:"p17", k:"g_camera1b"},
+  {f:"p18", k:"g_camera2"},
+  {f:"p19", k:"g_bagno"},
+  {f:"p20", k:"g_bagno2"},
+  {f:"p27", k:"g_piscina"},
+  {f:"p28", k:"g_piscina2"},
+  {f:"p31", k:"g_tennis"},
+  {f:"p22", k:"g_valle"}
+];
+
+const NEAR = [
+  {f:"z34", k:"n_riva"},
+  {f:"z32", k:"n_bastione"},
+  {f:"z39", k:"n_varone"},
+  {f:"z35", k:"n_tenno"},
+  {f:"z36", k:"n_ciclabile"},
+  {f:"z38", k:"n_giardini"}
+];
+
+const REVIEWS = [
+  {n:"Anastasiya", d:{it:"dicembre 2025", en:"December 2025", de:"Dezember 2025"}, k:"r1"},
+  {n:"Massimo",    d:{it:"gennaio 2026",  en:"January 2026",  de:"Januar 2026"},   k:"r2"},
+  {n:"Andrea",     d:{it:"settembre 2023",en:"September 2023",de:"September 2023"},k:"r3"},
+  {n:"Francesca",  d:{it:"dicembre 2025", en:"December 2025", de:"Dezember 2025"}, k:"r4"},
+  {n:"Davide",     d:{it:"giugno 2025",   en:"June 2025",     de:"Juni 2025"},     k:"r5"},
+  {n:"Jason",      d:{it:"marzo 2023",    en:"March 2023",    de:"März 2023"},     k:"r6"}
+];
+
+const AM_KEYS = ["a1","a2","a3","a4","a5","a6","a7","a8","a9","a10","a11","a12","a13","a14"];
+
+const T = {
+it:{
+  htmlLang:"it",
+  place:"Riva del Garda · Lago di Garda",
+  revcount:"116 recensioni", revcount2:"116 recensioni", revcount3:"116 recensioni",
+  s1:"ospiti", s2:"camere", s4:"bagno", s5:"m² terrazza",
+  more:"Vedi tutte le 25 foto",
+  h1:"Una terrazza privata di 150 m² sul lago",
+  d1:"Trilocale luminoso a 2 km dal centro e dalle spiagge di Riva del Garda. Il protagonista è la terrazza: oltre 150 m² tutti tuoi, con pergola bioclimatica, lettini, divani, zona pranzo e barbecue. Davanti, il Lago di Garda, il Monte Brione e tutta la valle.",
+  f1t:"Terrazza privata 150 m²", f1d:"Pergola, lettini, divani e barbecue. Non condivisa con nessuno.",
+  f2t:"Vista lago e montagne", f2d:"Lago di Garda, Monte Brione e la valle di Riva.",
+  f3t:"Piscina e campo da tennis", f3d:"Piscina olimpionica e per bambini in estate, tennis 24 ore su 24.",
+  f4t:"Posto auto in garage", f4d:"Coperto e riservato, incluso. Seconda auto fuori, gratis.",
+  h4:"Cosa troverai",
+  a1:"Wi-Fi", a2:"Aria condizionata", a3:"Cucina attrezzata", a4:"Lavastoviglie", a5:"Lavatrice",
+  a6:"TV con Netflix", a7:"Macchina del caffè", a8:"Barbecue privato", a9:"Lettini prendisole",
+  a10:"Garage", a11:"Piscina (estate)", a12:"Campo da tennis", a13:"Self check-in", a14:"Biancheria inclusa",
+  c1:"Pulizia", c2:"Comunicazione", c3:"Check-in", c4:"Precisione", c5:"Posizione", c6:"Qualità/prezzo",
+  r1:"La casa era meravigliosa, niente da dire sulla terrazza... che favola. Era tutto pulito e ordinato, e siccome ci siamo andati per Natale, la proprietaria ci ha lasciato anche un pandoro come dono. Host molto cortese e veloce nel rispondere. Tutto impeccabile. Se ne avremo la possibilità, ci torneremo sicuramente!",
+  r2:"Appartamento ordinato, pulito, completo di tutto, in posizione panoramica davvero splendida, da cui si domina la piana di Riva del Garda e i monti circostanti. Terrazza fantastica. Host gentile e sempre reattiva in tempi veloci.",
+  r3:"Vero punto di forza è la terrazza con vista splendida: abbiamo fatto un pranzo e passato un ottimo pomeriggio su questa terrazza dotata di tutti i comfort. Molto disponibile e tempestiva nelle risposte. Appartamento sicuramente super consigliato.",
+  r4:"Appartamento pulito, ben curato ed arredato con ogni comfort. Terrazza stupenda! Presenti tutte le comodità come essere a casa propria. Host presente e disponibile.",
+  r5:"Terrazza splendida e vista meravigliosa sul Lago di Garda, consigliatissimo!",
+  r6:"Appartamento pratico e accogliente con un'ampia terrazza. Vista splendida su lago e montagne. Host molto disponibile.",
+  revhint:"Scorri di lato per leggerne altre",
+  translated:"",
+  ey4:"Dintorni", h5:"Cosa c'è intorno",
+  n_riva:"Riva del Garda", n_riva_s:"Centro · 2 km",
+  n_bastione:"Il Bastione", n_bastione_s:"Fortezza panoramica",
+  n_varone:"Cascate del Varone", n_varone_s:"Nella gola di roccia",
+  n_tenno:"Lago di Tenno", n_tenno_s:"Acqua turchese",
+  n_ciclabile:"Ciclabile di Limone", n_ciclabile_s:"Sospesa sul lago",
+  n_giardini:"Lungolago", n_giardini_s:"Giardini e spiagge",
+  ctat:"Prenota direttamente",
+  ctad:"Scrivici su WhatsApp per disponibilità e prezzo. Senza intermediari e senza commissioni.",
+  wa:"Scrivici su WhatsApp", wash:"Prenota", stb:"Terrazza privata 150 m²",
+  orcall:"Preferisci chiamare?",
+  waMsg:"Ciao! Ho visto il sito di La Terrazza a Riva del Garda e vorrei informazioni su disponibilità e prezzi.",
+  g_terrazza:"La terrazza", g_vista_monti:"Vista sulle montagne", g_lettini:"Lettini al sole",
+  g_lago:"Vista sul Lago di Garda", g_lounge:"Zona relax", g_pranzo:"Pranzo all'aperto",
+  g_bbq:"Barbecue", g_fiori:"Fiori e sole", g_pergola:"Pergola bioclimatica",
+  g_balcone:"Angolo veranda", g_dall_alto:"La terrazza dall'alto", g_soggiorno:"Soggiorno",
+  g_pranzo_int:"Zona pranzo interna", g_cucina:"Cucina", g_cucina2:"Cucina e lavastoviglie",
+  g_caffe:"Caffè e tisane", g_camera1:"Camera matrimoniale", g_camera1b:"Camera matrimoniale",
+  g_camera2:"Seconda camera", g_bagno:"Bagno con doccia", g_bagno2:"Bagno",
+  g_piscina:"Piscina", g_piscina2:"Piscina olimpionica", g_tennis:"Campo da tennis",
+  g_valle:"La valle di Riva"
+},
+en:{
+  htmlLang:"en",
+  place:"Riva del Garda · Lake Garda",
+  revcount:"116 reviews", revcount2:"116 reviews", revcount3:"116 reviews",
+  s1:"guests", s2:"bedrooms", s4:"bath", s5:"m² terrace",
+  more:"See all 25 photos",
+  h1:"A private 150 m² terrace above the lake",
+  d1:"A bright two-bedroom apartment 2 km from the centre and the beaches of Riva del Garda. The star is the terrace: over 150 m² entirely yours, with a bioclimatic pergola, sun loungers, sofas, a dining area and a barbecue. In front of you, Lake Garda, Monte Brione and the whole valley.",
+  f1t:"Private 150 m² terrace", f1d:"Pergola, loungers, sofas and barbecue. Shared with no one.",
+  f2t:"Lake and mountain views", f2d:"Lake Garda, Monte Brione and the Riva valley.",
+  f3t:"Pool and tennis court", f3d:"Olympic and children's pools in summer, tennis 24/7.",
+  f4t:"Garage parking space", f4d:"Covered and reserved, included. Second car outside, free.",
+  h4:"What's included",
+  a1:"Wi-Fi", a2:"Air conditioning", a3:"Equipped kitchen", a4:"Dishwasher", a5:"Washing machine",
+  a6:"TV with Netflix", a7:"Coffee machine", a8:"Private barbecue", a9:"Sun loungers",
+  a10:"Garage", a11:"Pool (summer)", a12:"Tennis court", a13:"Self check-in", a14:"Linen included",
+  c1:"Cleanliness", c2:"Communication", c3:"Check-in", c4:"Accuracy", c5:"Location", c6:"Value",
+  r1:"The house was wonderful, and there's nothing to say about the terrace… it's a dream. Everything was clean and tidy, and since we went at Christmas the owner even left us a pandoro as a gift. A very kind host, quick to reply. Absolutely flawless. If we get the chance, we'll definitely be back!",
+  r2:"A tidy, clean apartment with everything you need, in a truly splendid panoramic position overlooking the Riva del Garda plain and the surrounding mountains. Fantastic terrace. A kind host who always replies quickly.",
+  r3:"The real strength is the terrace with its splendid view: we had lunch and spent a wonderful afternoon on this terrace with every comfort. Very helpful and prompt in replying. An apartment I'd definitely recommend.",
+  r4:"A clean apartment, well looked after and furnished with every comfort. Wonderful terrace! All the conveniences of being in your own home. A present and helpful host.",
+  r5:"Splendid terrace and a wonderful view over Lake Garda, highly recommended!",
+  r6:"A practical, welcoming apartment with a large terrace. Splendid views over the lake and mountains. A very helpful host.",
+  revhint:"Swipe sideways to read more",
+  translated:"Translated from Italian",
+  ey4:"Around", h5:"What's nearby",
+  n_riva:"Riva del Garda", n_riva_s:"Centre · 2 km",
+  n_bastione:"Il Bastione", n_bastione_s:"Panoramic fortress",
+  n_varone:"Varone Waterfall", n_varone_s:"Inside a rock gorge",
+  n_tenno:"Lake Tenno", n_tenno_s:"Turquoise water",
+  n_ciclabile:"Limone cycle path", n_ciclabile_s:"Suspended over the lake",
+  n_giardini:"Lakefront", n_giardini_s:"Gardens and beaches",
+  ctat:"Book directly",
+  ctad:"Message us on WhatsApp for availability and pricing. No middlemen, no fees.",
+  wa:"Message us on WhatsApp", wash:"Book", stb:"Private 150 m² terrace",
+  orcall:"Prefer to call?",
+  waMsg:"Hello! I saw the La Terrazza website in Riva del Garda and I'd like information about availability and prices.",
+  g_terrazza:"The terrace", g_vista_monti:"Mountain view", g_lettini:"Sun loungers",
+  g_lago:"Lake Garda view", g_lounge:"Lounge area", g_pranzo:"Outdoor dining",
+  g_bbq:"Barbecue", g_fiori:"Flowers and sun", g_pergola:"Bioclimatic pergola",
+  g_balcone:"Veranda corner", g_dall_alto:"The terrace from above", g_soggiorno:"Living room",
+  g_pranzo_int:"Indoor dining area", g_cucina:"Kitchen", g_cucina2:"Kitchen and dishwasher",
+  g_caffe:"Coffee and teas", g_camera1:"Double bedroom", g_camera1b:"Double bedroom",
+  g_camera2:"Second bedroom", g_bagno:"Bathroom with shower", g_bagno2:"Bathroom",
+  g_piscina:"Pool", g_piscina2:"Olympic pool", g_tennis:"Tennis court",
+  g_valle:"The Riva valley"
+},
+de:{
+  htmlLang:"de",
+  place:"Riva del Garda · Gardasee",
+  revcount:"116 Bewertungen", revcount2:"116 Bewertungen", revcount3:"116 Bewertungen",
+  s1:"Gäste", s2:"Schlafz.", s4:"Bad", s5:"m² Terrasse",
+  more:"Alle 25 Fotos ansehen",
+  h1:"Eine private 150 m² Terrasse über dem See",
+  d1:"Helle Dreizimmerwohnung, 2 km vom Zentrum und den Stränden von Riva del Garda entfernt. Der Star ist die Terrasse: über 150 m² ganz für Sie allein, mit bioklimatischer Pergola, Sonnenliegen, Sofas, Essbereich und Grill. Davor der Gardasee, der Monte Brione und das ganze Tal.",
+  f1t:"Private Terrasse 150 m²", f1d:"Pergola, Liegen, Sofas und Grill. Mit niemandem geteilt.",
+  f2t:"See- und Bergblick", f2d:"Gardasee, Monte Brione und das Tal von Riva.",
+  f3t:"Pool und Tennisplatz", f3d:"Olympia- und Kinderbecken im Sommer, Tennis rund um die Uhr.",
+  f4t:"Stellplatz in der Garage", f4d:"Überdacht und reserviert, inklusive. Zweitwagen draußen, kostenlos.",
+  h4:"Ausstattung",
+  a1:"WLAN", a2:"Klimaanlage", a3:"Ausgestattete Küche", a4:"Spülmaschine", a5:"Waschmaschine",
+  a6:"TV mit Netflix", a7:"Kaffeemaschine", a8:"Privater Grill", a9:"Sonnenliegen",
+  a10:"Garage", a11:"Pool (Sommer)", a12:"Tennisplatz", a13:"Self-Check-in", a14:"Bettwäsche inklusive",
+  c1:"Sauberkeit", c2:"Kommunikation", c3:"Check-in", c4:"Genauigkeit", c5:"Lage", c6:"Preis-Leistung",
+  r1:"Das Haus war wunderbar, und über die Terrasse gibt es nichts zu sagen … ein Traum. Alles war sauber und ordentlich, und da wir zu Weihnachten dort waren, hat uns die Gastgeberin sogar einen Pandoro als Geschenk dagelassen. Sehr freundliche Gastgeberin, die schnell antwortet. Alles tadellos. Wenn wir die Gelegenheit haben, kommen wir bestimmt wieder!",
+  r2:"Eine gepflegte, saubere Wohnung mit allem, was man braucht, in einer wirklich herrlichen Panoramalage mit Blick über die Ebene von Riva del Garda und die umliegenden Berge. Fantastische Terrasse. Freundliche Gastgeberin, die immer schnell reagiert.",
+  r3:"Die eigentliche Stärke ist die Terrasse mit ihrem herrlichen Blick: Wir haben dort zu Mittag gegessen und einen wunderbaren Nachmittag auf dieser Terrasse mit allem Komfort verbracht. Sehr hilfsbereit und schnell in den Antworten. Eine Wohnung, die ich absolut empfehlen kann.",
+  r4:"Saubere Wohnung, gut gepflegt und mit allem Komfort eingerichtet. Wunderschöne Terrasse! Alle Annehmlichkeiten wie zu Hause. Präsente und hilfsbereite Gastgeberin.",
+  r5:"Herrliche Terrasse und ein wunderbarer Blick auf den Gardasee, sehr zu empfehlen!",
+  r6:"Praktische und gemütliche Wohnung mit einer großen Terrasse. Herrlicher Blick auf See und Berge. Sehr hilfsbereite Gastgeberin.",
+  revhint:"Zur Seite wischen für mehr",
+  translated:"Aus dem Italienischen übersetzt",
+  ey4:"Umgebung", h5:"In der Umgebung",
+  n_riva:"Riva del Garda", n_riva_s:"Zentrum · 2 km",
+  n_bastione:"Il Bastione", n_bastione_s:"Aussichtsfestung",
+  n_varone:"Varone-Wasserfall", n_varone_s:"In der Felsschlucht",
+  n_tenno:"Tennosee", n_tenno_s:"Türkises Wasser",
+  n_ciclabile:"Radweg Limone", n_ciclabile_s:"Über dem See schwebend",
+  n_giardini:"Seepromenade", n_giardini_s:"Gärten und Strände",
+  ctat:"Direkt buchen",
+  ctad:"Schreiben Sie uns auf WhatsApp für Verfügbarkeit und Preise. Ohne Vermittler, ohne Gebühren.",
+  wa:"Auf WhatsApp schreiben", wash:"Buchen", stb:"Private Terrasse 150 m²",
+  orcall:"Lieber anrufen?",
+  waMsg:"Hallo! Ich habe die Website von La Terrazza in Riva del Garda gesehen und hätte gerne Informationen zu Verfügbarkeit und Preisen.",
+  g_terrazza:"Die Terrasse", g_vista_monti:"Bergblick", g_lettini:"Sonnenliegen",
+  g_lago:"Blick auf den Gardasee", g_lounge:"Loungebereich", g_pranzo:"Essen im Freien",
+  g_bbq:"Grill", g_fiori:"Blumen und Sonne", g_pergola:"Bioklimatische Pergola",
+  g_balcone:"Veranda-Ecke", g_dall_alto:"Die Terrasse von oben", g_soggiorno:"Wohnzimmer",
+  g_pranzo_int:"Essbereich innen", g_cucina:"Küche", g_cucina2:"Küche und Spülmaschine",
+  g_caffe:"Kaffee und Tee", g_camera1:"Doppelschlafzimmer", g_camera1b:"Doppelschlafzimmer",
+  g_camera2:"Zweites Schlafzimmer", g_bagno:"Bad mit Dusche", g_bagno2:"Bad",
+  g_piscina:"Pool", g_piscina2:"Olympiabecken", g_tennis:"Tennisplatz",
+  g_valle:"Das Tal von Riva"
+}
+};
+
+const CHECK = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m4 12.5 5 5L20 6.5"/></svg>';
+
+let lang = "it";
+
+function detectLang(){
+  const saved = localStorage.getItem("lt_lang");
+  if(saved && T[saved]) return saved;
+  const n = (navigator.languages && navigator.languages[0] || navigator.language || "it").slice(0,2).toLowerCase();
+  return T[n] ? n : "en";
+}
+
+const waUrl = () => "https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent(T[lang].waMsg);
+
+/* ---------- RENDER ---------- */
+function renderGrid(){
+  document.getElementById("grid").innerHTML = PHOTOS.slice(0,5).map((p,i)=>`
+    <figure data-i="${i}">
+      <img src="img/${p.f}-s.webp" alt="${T[lang][p.k]}" loading="${i<2?'eager':'lazy'}" decoding="async" width="900" height="900">
+      <figcaption>${T[lang][p.k]}</figcaption>
+    </figure>`).join("");
+  document.querySelectorAll("#grid figure").forEach(f=>f.addEventListener("click",()=>openLb(+f.dataset.i)));
+  document.getElementById("moreTxt").textContent = T[lang].more;
+}
+
+function renderNear(){
+  document.getElementById("near").innerHTML = NEAR.map(n=>`
+    <figure>
+      <img src="img/${n.f}-s.webp" alt="${T[lang][n.k]}" loading="lazy" decoding="async" width="900" height="900">
+      <figcaption>${T[lang][n.k]}<small>${T[lang][n.k+"_s"]}</small></figcaption>
+    </figure>`).join("");
+}
+
+function renderPills(){
+  document.getElementById("pills").innerHTML = AM_KEYS.map(k=>`<span>${CHECK}${T[lang][k]}</span>`).join("");
+}
+
+function renderReviews(){
+  const tr = T[lang].translated;
+  document.getElementById("revs").innerHTML = REVIEWS.map(r=>`
+    <article class="rev">
+      <div class="who">
+        <div class="av">${r.n[0]}</div>
+        <div><b>${r.n}</b><small>${r.d[lang]}</small></div>
+      </div>
+      <div class="s">★★★★★</div>
+      <p>${T[lang][r.k]}</p>
+      ${tr?`<span class="tr">${tr}</span>`:""}
+    </article>`).join("");
+}
+
+function applyLang(l){
+  lang = l;
+  const t = T[l];
+  document.documentElement.lang = t.htmlLang;
+  document.querySelectorAll("[data-i]").forEach(el=>{
+    const k = el.getAttribute("data-i");
+    if(t[k] !== undefined) el.textContent = t[k];
+  });
+  document.querySelectorAll(".langs button").forEach(b=>{
+    b.setAttribute("aria-pressed", b.dataset.lang===l ? "true":"false");
+  });
+  renderGrid(); renderNear(); renderPills(); renderReviews();
+  const u = waUrl();
+  document.getElementById("waMain").href = u;
+  document.getElementById("waSticky").href = u;
+  document.getElementById("telAlt").href = "tel:+" + WHATSAPP;
+  document.getElementById("telNum").textContent = TEL_SHOW;
+  if(lbBuilt) buildLb();
+  localStorage.setItem("lt_lang", l);
+}
+
+document.querySelectorAll(".langs button").forEach(b=>{
+  b.addEventListener("click",()=>applyLang(b.dataset.lang));
+});
+
+/* ---------- LIGHTBOX ---------- */
+const lb = document.getElementById("lb"),
+      lbTrack = document.getElementById("lbTrack"),
+      lbCap = document.getElementById("lbCap"),
+      lbCount = document.getElementById("lbCount");
+let lbBuilt = false;
+
+function buildLb(){
+  lbTrack.innerHTML = PHOTOS.map(p=>`<figure><img data-src="img/${p.f}.webp" alt="${T[lang][p.k]}"></figure>`).join("");
+  lbBuilt = true;
+}
+
+function openLb(i){
+  if(!lbBuilt) buildLb();
+  lb.classList.add("on");
+  document.body.style.overflow = "hidden";
+  [i-1,i,i+1].forEach(j=>{
+    const im = lbTrack.children[j] && lbTrack.children[j].querySelector("img");
+    if(im && !im.src) im.src = im.dataset.src;
+  });
+  lbTrack.scrollTo({left: i * lbTrack.clientWidth, behavior:"instant"});
+  updLb(i);
+}
+
+function updLb(i){
+  lbCount.textContent = (i+1) + " / " + PHOTOS.length;
+  lbCap.textContent = T[lang][PHOTOS[i].k];
+}
+
+lbTrack.addEventListener("scroll", ()=>{
+  const i = Math.round(lbTrack.scrollLeft / lbTrack.clientWidth);
+  if(i<0 || i>=PHOTOS.length) return;
+  updLb(i);
+  [i,i+1,i+2].forEach(j=>{
+    const im = lbTrack.children[j] && lbTrack.children[j].querySelector("img");
+    if(im && !im.src) im.src = im.dataset.src;
+  });
+}, {passive:true});
+
+function closeLb(){ lb.classList.remove("on"); document.body.style.overflow = ""; }
+document.getElementById("lbClose").addEventListener("click", closeLb);
+document.getElementById("moreBtn").addEventListener("click", ()=>openLb(0));
+document.addEventListener("keydown", e=>{ if(e.key==="Escape" && lb.classList.contains("on")) closeLb(); });
+
+/* ---------- STICKY ---------- */
+const sticky = document.getElementById("sticky"),
+      langbar = document.getElementById("langbar");
+
+new IntersectionObserver(es=>{
+  es.forEach(e=>{
+    langbar.classList.toggle("solid", !e.isIntersecting);
+    sticky.classList.toggle("on", !e.isIntersecting);
+  });
+},{rootMargin:"-70% 0px 0px 0px"}).observe(document.querySelector(".hero"));
+
+new IntersectionObserver(es=>{
+  es.forEach(e=>{ if(e.isIntersecting) sticky.classList.remove("on"); });
+},{threshold:.35}).observe(document.getElementById("contatto"));
+
+/* ---------- REVEAL ---------- */
+const rvObs = new IntersectionObserver(es=>{
+  es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add("in"); rvObs.unobserve(e.target); } });
+},{rootMargin:"0px 0px -6% 0px"});
+document.querySelectorAll(".rv").forEach(el=>rvObs.observe(el));
+
+applyLang(detectLang());
+</script>
+</body>
+</html>
